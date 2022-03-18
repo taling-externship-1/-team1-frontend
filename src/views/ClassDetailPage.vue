@@ -4,10 +4,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'ClassDetailPage',
-};
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>

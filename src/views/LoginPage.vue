@@ -4,10 +4,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'LoginPage',
-};
-</script>
+<script setup lang="ts"></script>
 
 <style scoped></style>
