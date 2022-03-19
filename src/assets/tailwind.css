@@ -5,7 +5,10 @@
 @tailwind utilities;
 
 .base-container {
-  @apply mx-auto max-w-6xl pt-7 pb-10
+  @apply mx-auto max-w-5xl
 }
 
+.primary-color {
+  @apply text-red-600
+}
 

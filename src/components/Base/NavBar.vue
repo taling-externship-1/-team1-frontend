@@ -1,6 +1,6 @@
 <template>
   <header class="w-full border-b-2 border-gray-100">
-    <div class="base-container">
+    <div class="base-container pt-7 pb-10">
       <div class="flex gap-10 h-10 relative items-center">
         <h1 class="absolute top-0">
           <router-link to="/">
