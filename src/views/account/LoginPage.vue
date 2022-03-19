@@ -107,9 +107,9 @@
           :src="require('@/assets/images/imgSpeechBubble@2x.png')"
           alt="탈잉이 처음이라면?"
         />
-        <p class="text-lg font-medium font-bold">가입 즉시 12만원 쿠폰팩을 드려요!</p>
+        <p class="text-lg font-bold">가입 즉시 12만원 쿠폰팩을 드려요!</p>
 
-        <button type="submit" class="btn_kakao">
+        <button class="btn_kakao">
           <img
             src="//front-img.taling.me/Content/app3/img/logo/logo-kakao@3x.png"
             width="19"
@@ -117,7 +117,7 @@
           />&nbsp; 카카오톡으로 로그인
         </button>
 
-        <button type="submit" class="btn_apple">
+        <button class="btn_apple">
           <img
             src="//front-img.taling.me/Content/app3/img/logo/logo-apple@3x.png"
             width="13"
@@ -125,9 +125,13 @@
           />&nbsp; Apple로 로그인
         </button>
 
-        <a class="text-sm text-center text-gray-500">이메일 로그인</a> |
-        <a class="text-sm text-center text-gray-500">페이스북 로그인</a> |
-        <a class="text-sm text-center text-gray-500">아이디 찾기</a>
+        <router-link to="/login-email" class="text-sm text-center text-gray-500"
+          >이메일 로그인</router-link
+        >
+        |
+        <router-link to="/" class="text-sm text-center text-gray-500">페이스북 로그인</router-link>
+        |
+        <router-link to="/" class="text-sm text-center text-gray-500">아이디 찾기</router-link>
       </form>
     </div>
   </div>
