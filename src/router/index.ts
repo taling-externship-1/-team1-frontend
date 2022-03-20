@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
+import AccountRoutes from './account';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -10,11 +11,7 @@ const routes: Array<RouteRecordRaw> = [
     name: 'Main',
     component: () => import(/* webpackChunkName: "main" */ '@/views/MainPage.vue'),
   },
-  {
-    path: '/login',
-    name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '@/views/LoginPage.vue'),
-  },
+  ...AccountRoutes,
   {
     path: '/class/:id',
     name: 'ClassDetail',
