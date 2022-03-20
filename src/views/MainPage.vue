@@ -1,165 +1,185 @@
 <template>
-  <header class="container mx-auto">
-    <div class="flex items-center justify-start h-16 px-4 py-12 mx-auto">
-      <h1 class="logo">
-        <router-link to="/">
-          <img :src="require('@/assets/images/app-logo@2x.png')" alt="탈잉TM" />
-        </router-link>
-      </h1>
+  <div class="container px-40 mx-auto">
+    <main class="flex space-x-2">
+      <div class="flex-grow">
+        <div class="flex items-center justify-start h-16 py-12 mx-auto">
+          <h1 class="logo">
+            <router-link to="/">
+              <img :src="require('@/assets/images/app-logo@2x.png')" alt="탈잉TM" />
+            </router-link>
+          </h1>
 
-      <div
-        class="flex items-center justify-start w-full h-16 m-2 border border-gray-100 rounded-md"
-      >
-        <nav class="flex items-center justify-center mx-10 space-x-8 text-sm font-medium">
-          <a class="py-1 font-bold text-gray-900 border-b-2 border-black" href="">홈 HOME</a>
-          <a class="font-bold text-gray-900" href="">브오디 VOD</a>
-        </nav>
+          <div
+            class="flex items-center justify-start w-full h-16 ml-2 border border-gray-100 rounded-md"
+          >
+            <nav class="flex items-center justify-center mx-10 space-x-8 text-sm font-medium">
+              <a class="py-1 font-bold text-gray-900 border-b-2 border-black" href="">홈 HOME</a>
+              <a class="font-bold text-gray-900" href="">브오디 VOD</a>
+            </nav>
 
-        <form class="hidden mb-0 lg:flex">
-          <div class="relative">
-            <input
-              class="h-10 text-sm border-2 border-gray-200 rounded-3xl pr-60 focus:z-10"
-              type="text"
-            />
+            <form class="hidden mb-0 lg:flex">
+              <div class="relative">
+                <input
+                  class="h-10 pl-4 text-sm border-2 border-gray-200 w-96 rounded-3xl focus:z-10 focus:border-pink-600"
+                  placeholder="배우고 싶은 재능이나 튜터를 검색해보세요."
+                  type="text"
+                />
 
-            <button
-              class="absolute inset-y-0 right-0 p-2 mr-px text-gray-600 rounded-r-lg"
-              type="submit"
-            >
-              <svg
-                class="w-5 h-5"
-                fill="currentColor"
-                viewbox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clip-rule="evenodd"
-                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  fill-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
+                <button
+                  class="absolute inset-y-0 right-0 p-2 mr-px text-gray-600 rounded-r-lg"
+                  type="submit"
+                >
+                  <svg
+                    class="w-5 h-5 text-pink-500"
+                    fill="currentColor"
+                    viewbox="0 0 20 20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+                      fill-rule="evenodd"
+                    ></path>
+                  </svg>
+                </button>
+              </div>
+            </form>
           </div>
-        </form>
+        </div>
+
+        <div class="mb-2 border border-gray-100 rounded-md">
+          <img
+            class="border rounded-md"
+            src="https://img.taling.me/Content/Uploads/Images/9af2a2d23ee9cbd9cf26b9b3b244bc3c434b1671.png"
+            alt=""
+          />
+        </div>
+
+        <div class="border border-gray-100 rounded-md">
+          <section class="flex justify-center border-b border-gray-200">
+            <ul class="flex flex-wrap">
+              <li class="mr-2" v-for="(tab, index) in tabs.contents" :key="tab.name">
+                <button
+                  @click="tabs.seleted = index"
+                  :class="{
+                    [tabs.seleted === index ? 'tab_active' : 'tab']: true,
+                  }"
+                >
+                  {{ tab.name }}
+                </button>
+              </li>
+            </ul>
+          </section>
+
+          <section v-for="n1 in 3" :key="n1">
+            <div class="px-4 py-8 mx-auto">
+              <h2 class="mt-1 text-2xl font-extrabold uppercase">지금! 뜨고 있는 클래스</h2>
+
+              <div class="grid grid-cols-3 mt-8 gap-x-10 gap-y-8">
+                <div class="block" v-for="n in 3" :key="n">
+                  <a class="flex justify-end" href="#">
+                    <img
+                      class="relative h-10 px-4 top-6"
+                      :src="require('@/assets/images/icWishUnclickedLine38Px@2x.png')"
+                      alt=""
+                    />
+                  </a>
+
+                  <img
+                    :src="require('@/assets/images/f47bffd0bbef1c1c14b1957c613c0fac79641396.jpg')"
+                    class="w-full -mt-8 rounded-2xl"
+                  />
+                  <div class="flex items-center w-16 gap-1 my-2 bg-red-500 rounded">
+                    <div>
+                      <img
+                        src="https://front-img.taling.me/Content/app3/img/icon/icClasscardLive@2x.png"
+                        alt=""
+                        class="w-6 h-6"
+                      />
+                    </div>
+                    <div>
+                      <span class="text-sm font-bold text-white">LIVE</span>
+                    </div>
+                  </div>
+                  <h5 class="mt-4 text-sm text-black">
+                    오픽토스 만점자랑 실생활 영어문장 만들고 피드백받기 3
+                  </h5>
+                  <p class="text-xs font-bold text-gray-400">영어회화 최화영 Jenn</p>
+                  <p class="text-sm font-bold">40,000원</p>
+                  <p class="text-xs">(총 10시간 / 시간당 4,000원)</p>
+                  <p class="text-xs"><span class="text-red-500">♥</span> 130</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
 
-      <div class="flex justify-end flex-1 w-0 lg:hidden">
-        <button class="p-2 text-gray-500 bg-gray-100 rounded-full" type="button">
-          <svg
-            class="w-5 h-5"
-            fill="currentColor"
-            viewbox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-              fill-rule="evenodd"
-            ></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-  </header>
+      <aside class="flex-none my-4 w-96">
+        <ul class="grid grid-cols-3 text-sm text-center border border-gray-100 rounded-md">
+          <li class="category">인기</li>
+          <li class="category">외국어</li>
+          <li class="category">액티비티</li>
+          <li class="category">취미공예</li>
+          <li class="category">디자인영상</li>
+          <li class="category">뷰티헬스</li>
+          <li class="category">라이프</li>
+          <li class="category">머니</li>
+          <li class="category">커리어</li>
+        </ul>
 
-  <ul class="flex items-center justify-start w-full h-16 m-2 border border-gray-100 rounded-md">
-    <li class="flex-1">
-      <a class="relative block p-4" href="">
-        <span class="absolute inset-x-0 w-full h-px bg-pink-600 border-2 -bottom-px"></span>
-
-        <div class="flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="flex-shrink-0 w-5 h-5 text-gray-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+        <article class="my-2 border border-gray-100 rounded-md bg-gray-50">
+          <div class="flex m-6">
+            <img
+              class="border-2 border-white border-solid rounded-full w-14 h-14"
+              src="https://img.taling.me/Content/Uploads/Profile/f858260f3b83ffdd13af113c84be00b4cb58fff9.jpg"
+              alt=""
             />
-          </svg>
+            <div class="flex flex-col justify-center ml-2">
+              <b>이연권님</b>
+              <div>
+                <span>반가워요</span>
+                <a href="#" class="mx-2 text-xs text-gray-400 underline bold">로그아웃</a>
+              </div>
+            </div>
+          </div>
 
-          <span class="ml-3 text-sm font-medium text-gray-900"> Settings </span>
-        </div>
-      </a>
-    </li>
-
-    <li class="flex-1">
-      <a class="relative block p-4" href="">
-        <div class="flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="flex-shrink-0 w-5 h-5 text-gray-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
-            />
-          </svg>
-
-          <span class="ml-3 text-sm font-medium text-gray-900"> Messages </span>
-        </div>
-      </a>
-    </li>
-
-    <li class="flex-1">
-      <a class="relative block p-4" href="">
-        <div class="flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="flex-shrink-0 w-5 h-5 text-gray-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"
-            />
-          </svg>
-
-          <span class="ml-3 text-sm font-medium text-gray-900"> Archive </span>
-        </div>
-      </a>
-    </li>
-
-    <li class="flex-1">
-      <a class="relative block p-4" href="">
-        <div class="flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="flex-shrink-0 w-5 h-5 text-gray-500"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
-            />
-          </svg>
-
-          <span class="ml-3 text-sm font-medium text-gray-900"> Notifications </span>
-        </div>
-      </a>
-    </li>
-  </ul>
+          <div class="flex m-6 text-sm">
+            <div class="px-3 py-2 bg-gray-200 rounded-3xl">쿠폰 <b>8</b> | 포인트 <b>0P</b></div>
+          </div>
+          <ul class="grid grid-cols-3 text-center">
+            <li class="flex items-center justify-center border border-gray-100 h-14">
+              <a href="#">수업신청서</a>
+            </li>
+            <li class="flex items-center justify-center border border-gray-100 h-14">
+              <a href="#">수강목록</a>
+            </li>
+            <li class="flex items-center justify-center border border-gray-100 h-14">
+              <a href="#"><span class="text-red-500">♥</span> 찜</a>
+            </li>
+          </ul>
+        </article>
+      </aside>
+    </main>
+  </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { reactive } from 'vue';
+
+const tabs = reactive({
+  seleted: 1,
+  contents: [
+    { name: '추천수업' },
+    { name: '탈잉 BEST' },
+    { name: '이번 주 시작' },
+    { name: '원데이 BEST' },
+    { name: '다회차 BEST' },
+    { name: '온라인' },
+    { name: '오프라인' },
+  ],
+});
+</script>
 
 <style scoped>
 .logo {
@@ -168,6 +188,23 @@
 }
 
 .hd_main {
-  @apply block overflow-hidden border border-gray-100 rounded-lg shadow-sm flex items-center px-10;
+  @apply overflow-hidden border border-gray-100 rounded-lg shadow-sm flex items-center px-10;
+}
+
+.tab {
+  @apply inline-block px-4 py-4 text-sm font-medium text-center border-b-4 border-transparent rounded-t-lg text-gray-600 hover:border-gray-300;
+}
+
+.tab_active {
+  @apply inline-block px-4 py-4 text-sm font-medium text-center text-pink-600 border-b-4 border-pink-600 rounded-t-lg;
+}
+
+.category {
+  @apply h-12 leading-10 hover:text-pink-600;
+}
+
+.category:hover {
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
