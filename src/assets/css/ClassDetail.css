@@ -1,0 +1,22 @@
+.class-desc {
+  @apply flex gap-8 mb-20;
+  word-break: keep-all;
+}
+
+.class-desc-col-title {
+  @apply w-32 text-2xl font-semibold flex-shrink-0;
+}
+
+.class-desc-col-desc {
+  @apply w-full;
+}
+
+.class-desc-col-desc .desc-text-wrap {
+  /* TODO: js 활용 높이값 조정 */
+  max-height: 600px;
+  @apply overflow-hidden;
+}
+
+.btn-more-less {
+  @apply underline text-red-600;
+}
