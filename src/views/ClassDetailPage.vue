@@ -3,7 +3,7 @@
     <NavBar />
     <main class="mt-10">
       <!-- container -->
-      <div class="class-container mx-auto max-w-6xl flex">
+      <div class="page-container flex">
         <!-- area - class detail description & recommendation -->
         <div class="flex-grow">
           <ClassDetail />
@@ -27,8 +27,4 @@ import ClassRecommendation from '@/components/Class/ClassRecommendation.vue';
 import ClassSchedule from '@/components/Class/ClassSchedule.vue';
 </script>
 
-<style scoped>
-.class-container {
-  min-width: 1024px;
-}
-</style>
+<style scoped></style>
