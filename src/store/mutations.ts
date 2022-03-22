@@ -1,8 +1,9 @@
 import { MutationTree } from 'vuex';
 import { State } from './index';
+import { MutationTypes } from './mutation-types';
 
 const mutations: MutationTree<State> = {
-  setProducts(state, payload) {
+  [MutationTypes.FETCH_USER](state, payload) {
     state.user = payload;
   },
 };

@@ -1,11 +1,10 @@
-import axios, { AxiosInstance } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import store from '@/store';
 
 function setInterceptors(instance: AxiosInstance): AxiosInstance {
-  instance.interceptors.request.use(oldConfig => {
-    const newConfig = oldConfig;
-    newConfig.headers.Authorization = `Bearer ${store.state.user.access_token}`;
-    return newConfig;
+  instance.interceptors.request.use((config: AxiosRequestConfig) => {
+    if (config.headers) config.headers.Authorization = `Bearer ${store.state.user.access_token}`;
+    return config;
   });
 
   return instance;

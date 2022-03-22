@@ -83,13 +83,6 @@
         <a class="text-gray-900" href="">로그인</a>
       </nav>
     </div>
-
-    <div class="border-t border-gray-100 lg:hidden">
-      <nav class="flex items-center justify-center p-4 overflow-x-auto text-sm font-medium">
-        <a class="flex-shrink-0 pl-4 text-gray-900" href="">튜터등록</a>
-        <a class="flex-shrink-0 pl-4 text-gray-900" href="">로그인</a>
-      </nav>
-    </div>
   </header>
 
   <!-- 로그인 폼 -->
@@ -107,6 +100,7 @@
             <input
               type="email"
               id="email"
+              v-model="loginUser.email"
               class="w-full p-4 pr-12 text-sm border-b border-gray-200"
               placeholder="이메일 주소를 입력해주세요"
             />
@@ -133,6 +127,7 @@
             <input
               type="password"
               id="password"
+              v-model="loginUser.password"
               class="w-full p-4 pr-12 text-sm border-b border-gray-200"
               placeholder="비밀번호를 입력해주세요"
             />
@@ -162,7 +157,7 @@
           </div>
         </div>
 
-        <button type="submit" class="btn_login">로그인하기</button>
+        <button type="button" class="btn_login" @click.prevent="login">로그인하기</button>
 
         <router-link to="/login-join" class="text-sm text-center text-gray-500"
           >회원가입</router-link
@@ -172,7 +167,22 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { LoginUserDto } from '@/interfaces';
+import { reactive, toRaw } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+
+const loginUser = reactive<LoginUserDto>({
+  email: '',
+  password: '',
+});
+
+const login = () => {
+  store.dispatch('login', toRaw(loginUser));
+};
+</script>
 
 <style scoped>
 .btn_login {

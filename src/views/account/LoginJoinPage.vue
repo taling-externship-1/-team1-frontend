@@ -105,6 +105,7 @@
         <div class="my-14">
           <div class="relative mt-1">
             <input
+              v-model="joinUser.name"
               type="text"
               class="w-full p-4 pr-12 text-sm border-b border-gray-200"
               placeholder="이름(실명)을 입력해주세요"
@@ -131,6 +132,7 @@
             <input
               type="email"
               id="email"
+              v-model="joinUser.email"
               class="w-full p-4 pr-12 text-sm border-b border-gray-200"
               placeholder="이메일 주소를 입력해주세요"
             />
@@ -140,6 +142,7 @@
             <input
               type="password"
               id="password"
+              v-model="joinUser.password"
               class="w-full p-4 pr-12 text-sm border-b border-gray-200"
               placeholder="비밀번호를 입력해주세요"
             />
@@ -172,6 +175,7 @@
             <input
               type="password"
               id="password"
+              v-model="joinUser.password_confirmation"
               class="w-full p-4 pr-12 text-sm border-b border-gray-200"
               placeholder="비밀번호를 재입력해주세요"
             />
@@ -201,13 +205,30 @@
           </div>
         </div>
 
-        <button type="submit" class="btn_join">회원가입</button>
+        <button type="button" class="btn_join" @click="register">회원가입</button>
       </form>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { reactive, toRaw } from 'vue';
+import { useStore } from 'vuex';
+import { CreateUserDto } from '@/interfaces';
+
+const store = useStore();
+
+const joinUser = reactive<CreateUserDto>({
+  name: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
+});
+
+const register = () => {
+  store.dispatch('join', toRaw(joinUser));
+};
+</script>
 
 <style scoped>
 .btn_join {
