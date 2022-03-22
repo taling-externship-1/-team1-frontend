@@ -3,3 +3,12 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.base-container {
+  @apply mx-auto max-w-5xl
+}
+
+.primary-color {
+  @apply text-red-600
+}
+
