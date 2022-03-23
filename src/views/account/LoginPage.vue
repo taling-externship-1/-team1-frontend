@@ -83,13 +83,6 @@
         <a class="text-gray-900" href="">로그인</a>
       </nav>
     </div>
-
-    <div class="border-t border-gray-100 lg:hidden">
-      <nav class="flex items-center justify-center p-4 overflow-x-auto text-sm font-medium">
-        <a class="flex-shrink-0 pl-4 text-gray-900" href="">튜터등록</a>
-        <a class="flex-shrink-0 pl-4 text-gray-900" href="">로그인</a>
-      </nav>
-    </div>
   </header>
 
   <!-- 로그인 폼 -->
@@ -97,71 +90,109 @@
   <div class="max-w-screen-xl px-4 mx-auto py-36">
     <div class="max-w-md mx-auto">
       <form action="" class="block p-8 overflow-hidden border border-gray-100 rounded-lg shadow-sm">
-        <img
-          class="w-40 mx-auto"
-          :src="require('@/assets/images/imgWelcomeCoupon258Px@2x.png')"
-          alt="welcome coupon"
-        />
-        <img
-          class="mx-auto my-2 w-44"
-          :src="require('@/assets/images/imgSpeechBubble@2x.png')"
-          alt="탈잉이 처음이라면?"
-        />
-        <p class="text-lg font-bold">가입 즉시 12만원 쿠폰팩을 드려요!</p>
+        <p class="text-2xl font-thin">
+          간편하게 로그인하고 탈잉의 <br />
+          다양한 튜터를 만나보세요.
+        </p>
 
-        <button class="btn_kakao">
-          <img
-            src="//front-img.taling.me/Content/app3/img/logo/logo-kakao@3x.png"
-            width="19"
-            alt=""
-          />&nbsp; 카카오톡으로 로그인
-        </button>
+        <div class="my-14">
+          <div class="relative mt-1">
+            <input
+              type="email"
+              id="email"
+              v-model="loginUser.email"
+              class="w-full p-4 pr-12 text-sm border-b border-gray-200"
+              placeholder="이메일 주소를 입력해주세요"
+            />
 
-        <button class="btn_apple">
-          <img
-            src="//front-img.taling.me/Content/app3/img/logo/logo-apple@3x.png"
-            width="13"
-            alt=""
-          />&nbsp; Apple로 로그인
-        </button>
+            <span class="absolute inset-y-0 inline-flex items-center right-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
+                />
+              </svg>
+            </span>
+          </div>
 
-        <router-link to="/login-email" class="text-sm text-center text-gray-500"
-          >이메일 로그인</router-link
+          <div class="relative mt-1">
+            <input
+              type="password"
+              id="password"
+              v-model="loginUser.password"
+              class="w-full p-4 pr-12 text-sm border-b border-gray-200"
+              placeholder="비밀번호를 입력해주세요"
+            />
+
+            <span class="absolute inset-y-0 inline-flex items-center right-4">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5 text-gray-400"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <button type="button" class="btn_login" @click.prevent="login">로그인하기</button>
+
+        <router-link to="/login-join" class="text-sm text-center text-gray-500"
+          >회원가입</router-link
         >
-        |
-        <router-link to="/" class="text-sm text-center text-gray-500">페이스북 로그인</router-link>
-        |
-        <router-link to="/" class="text-sm text-center text-gray-500">아이디 찾기</router-link>
       </form>
     </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { LoginUserDto } from '@/interfaces';
+import { reactive, toRaw } from 'vue';
+import { useStore } from 'vuex';
+
+const store = useStore();
+
+const loginUser = reactive<LoginUserDto>({
+  email: '',
+  password: '',
+});
+
+const login = () => {
+  store.dispatch('login', toRaw(loginUser));
+};
+</script>
 
 <style scoped>
-.btn_kakao {
-  margin: 30px 0 12px;
-  color: #381e1f;
-  background-color: #feeb4a;
-}
-
-.btn_apple {
-  margin-bottom: 24px;
-  color: #fff;
-  background-color: #222;
-}
-
-.btn_kakao,
-.btn_apple {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.btn_login {
   width: 100%;
   height: 48px;
   border-radius: 2px;
-  font-weight: 500;
   font-size: 16px;
+  color: #fff;
   line-height: 48px;
+  background-color: #ff0045;
+  margin-bottom: 2rem;
 }
 </style>
