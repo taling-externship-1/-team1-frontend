@@ -12,3 +12,12 @@
   @apply text-red-600
 }
 
+.page-container {
+  min-width: 1024px;
+  @apply mx-auto max-w-6xl
+}
+
+.page-fit-container {
+  width: 1024px;
+  @apply mx-auto max-w-5xl
+}
