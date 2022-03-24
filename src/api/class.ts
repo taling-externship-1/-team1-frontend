@@ -3,7 +3,7 @@ import { authInstance } from './instance';
 import { ClassRequestDto } from '@/interfaces';
 
 export default {
-  fetchClassList(classRequest: ClassRequestDto): AxiosPromise<ClassRequestDto> {
+  fetchClassList(): AxiosPromise<ClassRequestDto> {
     return authInstance.get('/lectures');
   },
 };

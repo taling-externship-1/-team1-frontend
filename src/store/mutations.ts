@@ -7,8 +7,9 @@ const mutations: MutationTree<State> = {
     state.user = payload;
   },
 
-  // [MutationTypes.FETCH_CLASS_LIST](state, payload) {
-  // }
+  [MutationTypes.FETCH_CLASS_LIST](state, payload) {
+    state.classList = payload;
+  },
 };
 
 export default mutations;
