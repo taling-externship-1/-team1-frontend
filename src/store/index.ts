@@ -1,7 +1,8 @@
-import { LoginedUserDto } from '@/interfaces';
+import { User } from '@/interfaces';
 import { createStore } from 'vuex';
 import mutations from './mutations';
 import actions from './actions';
+import getters from './getters';
 
 export default createStore<State>({
   state: {
@@ -12,11 +13,12 @@ export default createStore<State>({
       token_type: '',
     },
   },
+  getters,
   mutations,
   actions,
   modules: {},
 });
 
 export type State = {
-  user: LoginedUserDto;
+  user: User;
 };
