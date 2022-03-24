@@ -20,7 +20,7 @@ const createInstance = (): AxiosInstance =>
 
 const createAuthInstance = (): AxiosInstance => {
   const instance = axios.create({
-    baseURL: process.env.VUE_APP_TALING_API,
+    baseURL: process.env.VUE_APP_API,
   });
   return setInterceptors(instance);
 };

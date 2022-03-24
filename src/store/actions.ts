@@ -9,8 +9,8 @@ import { MutationTypes } from './mutation-types';
 const actions: ActionTree<State, State> = {
   async login({ commit }, loginUserDto: LoginUserDto) {
     try {
-      const { data } = await AccountApi.login(loginUserDto);
-      commit(MutationTypes.FETCH_USER, data);
+      const res = await AccountApi.login(loginUserDto).then(res => res.data.data);
+      commit(MutationTypes.FETCH_USER, res);
       router.push('/');
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) alert(error.response?.data.message);
