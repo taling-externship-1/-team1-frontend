@@ -1,7 +1,7 @@
 import { ActionTree } from 'vuex';
 import axios from 'axios';
 import router from '@/router';
-import { AccountApi } from '@/api';
+import { AccountApi, ClassApi } from '@/api';
 import { State } from './index';
 import { CreateUserDto, LoginUserDto } from '@/interfaces';
 import { MutationTypes } from './mutation-types';
@@ -22,6 +22,15 @@ const actions: ActionTree<State, State> = {
       const { data } = await AccountApi.register(createUser);
       commit(MutationTypes.FETCH_USER, data);
       router.push('/');
+    } catch (error: unknown) {
+      if (axios.isAxiosError(error)) alert(error.response?.data.message);
+    }
+  },
+
+  async fetchClassList({ commit }) {
+    try {
+      const { data } = await ClassApi.fetchClassList();
+      commit(MutationTypes.FETCH_CLASS_LIST, data);
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) alert(error.response?.data.message);
     }
