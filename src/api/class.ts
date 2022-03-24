@@ -1,9 +1,9 @@
 import { AxiosPromise } from 'axios';
 import { authInstance } from './instance';
-import { ClassRequestDto } from '@/interfaces';
+import { ClassResponseDto } from '@/interfaces';
 
 export default {
-  fetchClassList(): AxiosPromise<ClassRequestDto> {
+  fetchClassList(): AxiosPromise<ClassResponseDto> {
     return authInstance.get('/lectures');
   },
 };

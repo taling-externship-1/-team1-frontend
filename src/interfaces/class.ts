@@ -1,4 +1,4 @@
-interface ClassRequestUser {
+interface ClassResponseUser {
   id: number;
   name: string;
   email: string;
@@ -9,28 +9,28 @@ interface ClassRequestUser {
   is_tutor?: string;
 }
 
-interface ClassRequestCategory {
+interface ClassResponseCategory {
   id: number;
   name: string;
   created_at: string;
   updated_at: string;
 }
 
-interface ClassRequestClassMedia {
+interface ClassResponseClassMedia {
   id: number;
   name: string;
   created_at: string;
   updated_at: string;
 }
 
-interface ClassRequestLinks {
+interface ClassResponseLinks {
   first: string;
   last: string;
   prev?: string;
   next?: string;
 }
 
-interface ClassRequestMeta {
+interface ClassResponseMeta {
   current_page: number;
   from: number;
   last_page: number;
@@ -41,7 +41,7 @@ interface ClassRequestMeta {
   total: number;
 }
 
-interface ClassRequestDataDto {
+export interface ClassResponseDataDto {
   id: number;
   tutor_id: number;
   category_id: number;
@@ -57,13 +57,13 @@ interface ClassRequestDataDto {
   image: string;
   created_at: string;
   updated_at: string;
-  user: ClassRequestUser;
-  category: ClassRequestCategory;
-  class_media: ClassRequestClassMedia;
+  user: ClassResponseUser;
+  category: ClassResponseCategory;
+  class_media: ClassResponseClassMedia;
 }
 
-export interface ClassRequestDto {
+export interface ClassResponseDto {
   data: [];
-  links: ClassRequestLinks;
-  meta: ClassRequestMeta;
+  links: ClassResponseLinks;
+  meta: ClassResponseMeta;
 }

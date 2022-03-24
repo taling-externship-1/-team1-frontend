@@ -66,7 +66,11 @@
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { ClassResponseDataDto } from '@/interfaces';
+
+const classData = defineProps<ClassResponseDataDto>();
+</script>
 
 <style scoped>
 .card {

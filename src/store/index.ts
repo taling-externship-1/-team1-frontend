@@ -1,4 +1,4 @@
-import { LoginedUserDto, ClassRequestDto } from '@/interfaces';
+import { LoginedUserDto, ClassResponseDto } from '@/interfaces';
 import { createStore } from 'vuex';
 import mutations from './mutations';
 import actions from './actions';
@@ -38,5 +38,5 @@ export default createStore<State>({
 
 export type State = {
   user: LoginedUserDto;
-  classList: ClassRequestDto;
+  classList: ClassResponseDto;
 };

@@ -6,9 +6,9 @@
         <div class="mt-5 mb-5 text-sm text-gray-600">7376개의 수업</div>
         <!-- search class -->
         <div class="mb-20 grid grid-cols-3 gap-5">
-          <div :key="idx" v-for="(_, idx) in new Array(15)">
-            <router-link to="#">
-              <SearchClassCard />
+          <div :key="classData.id" v-for="classData in classList.data">
+            <router-link :to="`/class/${classData.id}`">
+              <SearchClassCard :classData="classData" />
             </router-link>
           </div>
         </div>
@@ -23,10 +23,16 @@
 </template>
 
 <script setup lang="ts">
+import { useStore } from 'vuex';
+import { computed } from 'vue';
 import NavBar from '@/components/Base/NavBar.vue';
 import Footer from '@/components/Base/Footer.vue';
 import SearchClassCard from '@/components/Search/SearchClassCard.vue';
 import SearchClassPagination from '@/components/Search/SearchClassPagination.vue';
+
+const store = useStore();
+await store.dispatch('fetchClassList');
+const classList = computed(() => store.state.classList);
 </script>
 
 <style scoped>
