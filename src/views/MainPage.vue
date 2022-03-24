@@ -71,7 +71,7 @@
             </ul>
           </section>
 
-          <section v-for="n1 in 3" :key="n1">
+          <section v-for="lecture in lectures" :key="lecture.id">
             <div class="px-4 py-8 mx-auto">
               <h2 class="mt-1 text-2xl font-extrabold uppercase">지금! 뜨고 있는 클래스</h2>
 
@@ -89,25 +89,21 @@
                     :src="require('@/assets/images/f47bffd0bbef1c1c14b1957c613c0fac79641396.jpg')"
                     class="w-full -mt-8 rounded-2xl"
                   />
-                  <div class="flex items-center w-16 gap-1 my-2 bg-red-500 rounded">
-                    <div>
-                      <img
-                        src="https://front-img.taling.me/Content/app3/img/icon/icClasscardLive@2x.png"
-                        alt=""
-                        class="w-6 h-6"
-                      />
-                    </div>
-                    <div>
-                      <span class="text-sm font-bold text-white">LIVE</span>
-                    </div>
-                  </div>
+                  <ClassTypeBadge :media="lecture.class_media" />
                   <h5 class="mt-4 text-sm text-black">
-                    오픽토스 만점자랑 실생활 영어문장 만들고 피드백받기 3
+                    {{ lecture.name }}
                   </h5>
-                  <p class="text-xs font-bold text-gray-400">영어회화 최화영 Jenn</p>
-                  <p class="text-sm font-bold">40,000원</p>
-                  <p class="text-xs">(총 10시간 / 시간당 4,000원)</p>
-                  <p class="text-xs"><span class="text-red-500">♥</span> 130</p>
+                  <p class="text-xs font-bold text-gray-400">{{ lecture.user.name }}</p>
+                  <p class="text-sm font-bold">
+                    {{ totalPrice(lecture.total_time, lecture.price_for_hour) }}원
+                  </p>
+                  <p class="text-xs">
+                    (총 {{ lecture.total_time }}시간 / 시간당
+                    {{ lecture.price_for_hour.toLocaleString() }}원)
+                  </p>
+                  <p class="text-xs">
+                    <span class="text-red-500">♥</span> {{ lecture.view_count }}
+                  </p>
                 </div>
               </div>
             </div>
@@ -128,7 +124,10 @@
           <li class="category">커리어</li>
         </ul>
 
-        <article class="my-2 border border-gray-100 rounded-md bg-gray-50">
+        <article
+          class="my-2 border border-gray-100 rounded-md bg-gray-50"
+          v-if="store.getters.isLogin"
+        >
           <div class="flex m-6">
             <img
               class="border-2 border-white border-solid rounded-full w-14 h-14"
@@ -136,10 +135,15 @@
               alt=""
             />
             <div class="flex flex-col justify-center ml-2">
-              <b>이연권님</b>
+              <b>{{ user.name }}님</b>
               <div>
                 <span>반가워요</span>
-                <a href="#" class="mx-2 text-xs text-gray-400 underline bold">로그아웃</a>
+                <button
+                  @click="store.commit('LOGOUT')"
+                  class="mx-2 text-xs text-gray-400 underline bold"
+                >
+                  로그아웃
+                </button>
               </div>
             </div>
           </div>
@@ -159,14 +163,32 @@
             </li>
           </ul>
         </article>
+
+        <article class="my-2 border border-gray-100 rounded-md bg-gray-50" v-else>
+          <div class="m-6 text-xl font-bold">
+            로그인 하시고 탈잉의<br />
+            다양한 튜터를 만나보세요.
+
+            <button class="btn-login" @click="router.push('/login')">탈잉 로그인</button>
+          </div>
+        </article>
       </aside>
     </main>
   </div>
 </template>
 
 <script setup lang="ts">
-import { reactive } from 'vue';
+import { computed, reactive, ref } from 'vue';
+import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
+import { LectureApi } from '@/api';
+import { Lecture } from '@/interfaces';
+import ClassTypeBadge from '@/components/Class/ClassTypeBadge.vue';
 
+const store = useStore();
+const router = useRouter();
+const lectures = ref<Lecture[]>([]);
+const user = computed(() => store.state.user);
 const tabs = reactive({
   seleted: 1,
   contents: [
@@ -179,6 +201,10 @@ const tabs = reactive({
     { name: '오프라인' },
   ],
 });
+
+const totalPrice = (time: number, price: number): string => (time * price).toLocaleString();
+
+lectures.value = await LectureApi.fetchLectures().then(res => res.data.data);
 </script>
 
 <style scoped>
@@ -206,5 +232,17 @@ const tabs = reactive({
 .category:hover {
   font-weight: bold;
   cursor: pointer;
+}
+
+.btn-login {
+  margin-top: 2rem;
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #fff;
+  line-height: 48px;
+  background-color: #ff0045;
+  margin-bottom: 2rem;
 }
 </style>

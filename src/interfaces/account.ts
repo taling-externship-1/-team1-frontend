@@ -19,6 +19,12 @@ export interface LoginUserDto {
 }
 
 export interface LoginedUserDto {
+  data: {
+    data: User;
+  };
+}
+
+export interface User {
   id?: number;
   name: string;
   email: string;
