@@ -18,7 +18,7 @@
           <div class="avtar w-11 h-11 mx-auto rounded-full bg-center bg-no-repeat bg-cover"></div>
           <!-- nickname -->
           <div>
-            <div class="text-sm text-center">탈잉매니저</div>
+            <div class="text-sm text-center">{{ props.classData.user.name }}</div>
             <div class="text-10px text-center">탈잉라이브센터</div>
           </div>
         </div>
@@ -27,7 +27,12 @@
         <div>
           <!-- image -->
           <div class="mb-3">
-            <div class="card-img h-48 bg-center bg-no-repeat bg-cover"></div>
+            <div
+              class="h-48 bg-center bg-no-repeat bg-cover"
+              :style="{
+                backgroundImage: `url('http://133.186.219.80/${props.classData.image}')`,
+              }"
+            ></div>
           </div>
         </div>
 
@@ -35,18 +40,22 @@
         <div class="pl-4">
           <!-- title -->
           <div class="mb-6">
-            <h1 class="text-sm font-bold">탈잉 온라인 라이브 상담 센터</h1>
+            <h1 class="text-sm font-bold">
+              {{ props.classData.name || '탈잉 온라인 라이브 상담 센터' }}
+            </h1>
           </div>
 
           <!-- price -->
           <div class="mb-1">
-            <span class="font-bold text-red-600">₩10,000</span>
+            <span class="font-bold text-red-600"
+              >₩{{ props.classData.price_for_hour.toLocaleString('ko-kr') }}</span
+            >
             <span class="ml-1 text-xs">/시간</span>
           </div>
 
           <!-- new | rating | type -->
           <div class="flex gap-4 items-center">
-            <div>
+            <div v-if="props.classData.is_event">
               <img class="w-9" :src="require('@/assets/resources/new.png')" alt="new" />
             </div>
             <div class="flex items-center">
@@ -57,7 +66,7 @@
               <span class="text-gray-400">|</span>
             </div>
             <div>
-              <span class="text-sm text-gray-400">온라인 LIVE</span>
+              <span class="text-sm text-gray-400">{{ props.classData.class_media.name }}</span>
             </div>
           </div>
         </div>
@@ -69,7 +78,9 @@
 <script setup lang="ts">
 import { ClassResponseDataDto } from '@/interfaces';
 
-const classData = defineProps<ClassResponseDataDto>();
+const props = defineProps<{
+  classData: ClassResponseDataDto;
+}>();
 </script>
 
 <style scoped>
