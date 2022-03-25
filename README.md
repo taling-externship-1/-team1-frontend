@@ -2,7 +2,7 @@
 
 > 탈잉 클론 코딩 프로젝트 입니다.
 
-# [:computer: Demo](https://pedantic-colden-6e215a.netlify.app/)
+# [:computer: Demo](http://133.186.219.80/)
 
 ## Stacks
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=HTML5&logoColor=white"/>
