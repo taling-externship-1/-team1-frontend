@@ -8,6 +8,7 @@ const mutations: MutationTree<State> = {
   },
   [MutationTypes.FETCH_CLASS_LIST](state, payload) {
     state.classList = payload;
+  },
   [MutationTypes.LOGOUT](state) {
     state.user = { name: '', email: '', access_token: '', token_type: '' };
   },
