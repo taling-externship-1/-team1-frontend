@@ -72,41 +72,43 @@
           </section>
 
           <section v-for="lecture in lectures" :key="lecture.id">
-            <div class="px-4 py-8 mx-auto">
-              <h2 class="mt-1 text-2xl font-extrabold uppercase">지금! 뜨고 있는 클래스</h2>
+            <router-link :to="`/class/${lecture.id}`">
+              <div class="px-4 py-8 mx-auto">
+                <h2 class="mt-1 text-2xl font-extrabold uppercase">지금! 뜨고 있는 클래스</h2>
 
-              <div class="grid grid-cols-3 mt-8 gap-x-10 gap-y-8">
-                <div class="block" v-for="n in 3" :key="n">
-                  <a class="flex justify-end" href="#">
+                <div class="grid grid-cols-3 mt-8 gap-x-10 gap-y-8">
+                  <div class="block" v-for="n in 3" :key="n">
+                    <a class="flex justify-end" href="#">
+                      <img
+                        class="relative h-10 px-4 top-6"
+                        :src="require('@/assets/images/icWishUnclickedLine38Px@2x.png')"
+                        alt=""
+                      />
+                    </a>
+
                     <img
-                      class="relative h-10 px-4 top-6"
-                      :src="require('@/assets/images/icWishUnclickedLine38Px@2x.png')"
-                      alt=""
+                      :src="require('@/assets/images/f47bffd0bbef1c1c14b1957c613c0fac79641396.jpg')"
+                      class="w-full -mt-8 rounded-2xl"
                     />
-                  </a>
-
-                  <img
-                    :src="require('@/assets/images/f47bffd0bbef1c1c14b1957c613c0fac79641396.jpg')"
-                    class="w-full -mt-8 rounded-2xl"
-                  />
-                  <ClassTypeBadge :media="lecture.class_media" />
-                  <h5 class="mt-4 text-sm text-black">
-                    {{ lecture.name }}
-                  </h5>
-                  <p class="text-xs font-bold text-gray-400">{{ lecture.user.name }}</p>
-                  <p class="text-sm font-bold">
-                    {{ totalPrice(lecture.total_time, lecture.price_for_hour) }}원
-                  </p>
-                  <p class="text-xs">
-                    (총 {{ lecture.total_time }}시간 / 시간당
-                    {{ lecture.price_for_hour.toLocaleString() }}원)
-                  </p>
-                  <p class="text-xs">
-                    <span class="text-red-500">♥</span> {{ lecture.view_count }}
-                  </p>
+                    <ClassTypeBadge :media="lecture.class_media" />
+                    <h5 class="mt-4 text-sm text-black">
+                      {{ lecture.name }}
+                    </h5>
+                    <p class="text-xs font-bold text-gray-400">{{ lecture.user.name }}</p>
+                    <p class="text-sm font-bold">
+                      {{ totalPrice(lecture.total_time, lecture.price_for_hour) }}원
+                    </p>
+                    <p class="text-xs">
+                      (총 {{ lecture.total_time }}시간 / 시간당
+                      {{ lecture.price_for_hour.toLocaleString() }}원)
+                    </p>
+                    <p class="text-xs">
+                      <span class="text-red-500">♥</span> {{ lecture.view_count }}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </router-link>
           </section>
         </div>
       </div>
