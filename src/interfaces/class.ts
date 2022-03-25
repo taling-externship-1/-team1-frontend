@@ -67,3 +67,8 @@ export interface ClassResponseDto {
   links: ClassResponseLinks;
   meta: ClassResponseMeta;
 }
+
+export interface ClassSearchQuery {
+  keyword: string;
+  page: string;
+}

@@ -1,9 +1,12 @@
 import { AxiosPromise } from 'axios';
-import { authInstance } from './instance';
-import { ClassResponseDto } from '@/interfaces';
+import { instance } from './instance';
+import { ClassResponseDto, ClassSearchQuery } from '@/interfaces';
 
 export default {
-  fetchClassList(): AxiosPromise<ClassResponseDto> {
-    return authInstance.get('/lectures');
+  fetchClassList(query?: ClassSearchQuery): AxiosPromise<ClassResponseDto> {
+    if (query?.keyword && query?.page) {
+      return instance.get(`/lectures?keyword=${query?.keyword}&page=${query?.page}`);
+    }
+    return instance.get('/lectures');
   },
 };

@@ -18,7 +18,7 @@
           <div class="avtar w-11 h-11 mx-auto rounded-full bg-center bg-no-repeat bg-cover"></div>
           <!-- nickname -->
           <div>
-            <div class="text-sm text-center">{{ props.classData.user.name }}</div>
+            <div class="text-sm text-center">{{ props.classData.user.name.slice(0, 6) }}</div>
             <div class="text-10px text-center">탈잉라이브센터</div>
           </div>
         </div>

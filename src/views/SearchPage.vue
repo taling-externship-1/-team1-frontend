@@ -24,6 +24,7 @@
 
 <script setup lang="ts">
 import { useStore } from 'vuex';
+import { useRoute } from 'vue-router';
 import { computed } from 'vue';
 import NavBar from '@/components/Base/NavBar.vue';
 import Footer from '@/components/Base/Footer.vue';
@@ -31,8 +32,12 @@ import SearchClassCard from '@/components/Search/SearchClassCard.vue';
 import SearchClassPagination from '@/components/Search/SearchClassPagination.vue';
 
 const store = useStore();
-await store.dispatch('fetchClassList');
+const route = useRoute();
+
+console.log(route.query);
+await store.dispatch('fetchClassList', route.query);
 const classList = computed(() => store.state.classList);
+// const classList = watch(() => route.query.page);
 </script>
 
 <style scoped>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import router from '@/router';
 import { AccountApi, ClassApi } from '@/api';
 import { State } from './index';
-import { CreateUserDto, LoginUserDto } from '@/interfaces';
+import { ClassSearchQuery, CreateUserDto, LoginUserDto } from '@/interfaces';
 import { MutationTypes } from './mutation-types';
 
 const actions: ActionTree<State, State> = {
@@ -27,9 +27,10 @@ const actions: ActionTree<State, State> = {
     }
   },
 
-  async fetchClassList({ commit }) {
+  async fetchClassList({ commit }, query?: ClassSearchQuery) {
     try {
-      const { data } = await ClassApi.fetchClassList();
+      const { data } = await ClassApi.fetchClassList(query);
+      console.log('data: ', data);
       commit(MutationTypes.FETCH_CLASS_LIST, data);
     } catch (error: unknown) {
       if (axios.isAxiosError(error)) alert(error.response?.data.message);
